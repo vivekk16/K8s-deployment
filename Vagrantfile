@@ -27,6 +27,9 @@ Vagrant.configure(2) do |config|
     node.vm.hostname          = "master.example.com"
 
     node.vm.network "private_network", ip: "172.16.16.100"
+    for p in 30000..32700
+      node.vm.network "forwarded_port", guest: p, host: p
+    end
 
     node.vm.provider :virtualbox do |v|
       v.name    = "master"
